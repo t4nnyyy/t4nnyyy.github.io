@@ -21,6 +21,44 @@
   box-sizing: border-box;
 }
 
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--cyan) rgba(3, 10, 18, 0.8);
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: linear-gradient(180deg, rgba(3, 10, 18, 0.92), rgba(12, 5, 30, 0.9));
+  border: 1px solid rgba(64, 233, 255, 0.1);
+  border-radius: 999px;
+}
+
+*::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, var(--cyan), var(--blue) 48%, var(--pink)) padding-box;
+  box-shadow: 0 0 12px rgba(64, 233, 255, 0.8);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background:
+    linear-gradient(180deg, var(--green), var(--cyan) 48%, var(--pink)) padding-box;
+  box-shadow: 0 0 18px rgba(104, 255, 142, 0.9);
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(180deg, var(--pink), var(--cyan)) padding-box;
+}
+
+*::-webkit-scrollbar-corner {
+  background: rgba(3, 10, 18, 0.92);
+}
+
 html,
 body {
   margin: 0;
@@ -29,6 +67,28 @@ body {
   color: var(--text);
   font-family: var(--ui);
   overflow: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--cyan) rgba(3, 10, 18, 0.8);
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  background: linear-gradient(180deg, rgba(3, 10, 18, 0.92), rgba(12, 5, 30, 0.9));
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, var(--cyan), var(--blue) 48%, var(--pink)) padding-box;
+  box-shadow: 0 0 12px rgba(64, 233, 255, 0.8);
 }
 
 a {
@@ -425,6 +485,7 @@ input {
   display: grid;
   grid-template-columns: 220px 1fr;
   height: calc(100% - 44px);
+  min-height: 0;
 }
 
 .explorer-sidebar {
@@ -463,6 +524,7 @@ input {
 
 .explorer-main {
   min-width: 0;
+  min-height: 0;
   display: flex;
   flex-direction: column;
 }
@@ -485,11 +547,20 @@ input {
 
 .repo-grid {
   flex: 1;
+  min-height: 0;
   padding: 0 16px 18px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
   overflow: auto;
+}
+
+.repo-status {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 18px 4px;
+  font-family: var(--mono);
+  line-height: 1.5;
 }
 
 .repo-card {
@@ -646,7 +717,6 @@ input {
   height: calc(100% - 44px);
   overflow: auto;
   padding: 24px;
-  scrollbar-color: rgba(64, 233, 255, 0.35) transparent;
 }
 
 .profile-hero {

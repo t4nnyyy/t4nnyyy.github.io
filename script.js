@@ -1,35 +1,5 @@
-const repositories = [
-  {
-    name: "PersistHawk",
-    url: "https://github.com/t4nnyyy/PersistHawk",
-    description: "Persistence hunting workspace for spotting suspicious autoruns, services, tasks, and startup artifacts."
-  },
-  {
-    name: "IP-Reputo",
-    url: "https://github.com/t4nnyyy/IP-Reputo",
-    description: "IP reputation helper for quick investigation and enrichment during SOC triage."
-  },
-  {
-    name: "EmailHeaderAnalyzer",
-    url: "https://github.com/t4nnyyy/EmailHeaderAnalyzer",
-    description: "Email header analysis utility for phishing investigations and authentication review."
-  },
-  {
-    name: "DNS_Logger",
-    url: "https://github.com/t4nnyyy/DNS_Logger",
-    description: "DNS logging and monitoring project for visibility into lookup activity and suspicious patterns."
-  },
-  {
-    name: "binary-typer",
-    url: "https://github.com/t4nnyyy/binary-typer",
-    description: "Binary and file typing helper for identifying file characteristics during analysis."
-  },
-  {
-    name: "git-cloner",
-    url: "https://github.com/t4nnyyy/git-cloner",
-    description: "Repository cloning helper for quickly pulling project workspaces into a local environment."
-  }
-];
+const repositories = [];
+const githubReposEndpoint = "https://api.github.com/users/t4nnyyy/repos";
 
 const bootLines = [
   "[    0.000000] Loading Kali Linux inspired dragon splash...",
@@ -40,12 +10,7 @@ const bootLines = [
   "[    0.552108] Loading wallpaper: assets/t4nnyyy.png",
   "[    0.687440] Starting network manager: eth0 online",
   "[    0.751702] Pulling repository inventory",
-  "[    0.820491] Found PersistHawk",
-  "[    0.914782] Found IP-Reputo",
-  "[    1.002101] Found EmailHeaderAnalyzer",
-  "[    1.084983] Found DNS_Logger",
-  "[    1.164552] Found binary-typer",
-  "[    1.281492] Found git-cloner",
+  "[    0.820491] Loading public repository inventory from GitHub",
   "[    1.394201] Starting file explorer service",
   "[    1.502012] Starting terminal service",
   "[    1.733700] Login accepted for t4nnyyy",
@@ -83,6 +48,15 @@ function escapeHtml(value) {
 }
 
 function renderRepositories() {
+  if (!repositories.length) {
+    repoGrid.innerHTML = `
+      <p class="repo-status pink">
+        No public repositories were returned for this account.
+      </p>
+    `;
+    return;
+  }
+
   repoGrid.innerHTML = repositories.map((repo, index) => `
     <article class="repo-card">
       <div class="repo-header">
@@ -95,6 +69,48 @@ function renderRepositories() {
       <a class="repo-link" href="${escapeHtml(repo.url)}" target="_blank" rel="noopener noreferrer">open repository ↗</a>
     </article>
   `).join("");
+}
+
+async function loadRepositories() {
+  repoGrid.innerHTML = '<p class="repo-status cyan">Loading public repositories from GitHub...</p>';
+
+  try {
+    let page = 1;
+    let repos = [];
+
+    while (true) {
+      const response = await fetch(`${githubReposEndpoint}?type=owner&sort=updated&per_page=100&page=${page}`, {
+        headers: { Accept: "application/vnd.github+json" }
+      });
+
+      if (!response.ok) {
+        throw new Error(`GitHub returned ${response.status}`);
+      }
+
+      const pageRepos = await response.json();
+      if (!Array.isArray(pageRepos)) {
+        throw new Error("GitHub returned an unexpected repository response");
+      }
+
+      repos = repos.concat(pageRepos);
+      if (pageRepos.length < 100) break;
+      page += 1;
+    }
+
+    repositories.push(...repos.map((repo) => ({
+      name: repo.name,
+      url: repo.html_url,
+      description: repo.description || "Public repository without a description."
+    })));
+    renderRepositories();
+  } catch (error) {
+    repoGrid.innerHTML = `
+      <p class="repo-status pink">
+        Unable to load public repositories from GitHub. Please try again later.
+      </p>
+    `;
+    console.error("Unable to load GitHub repositories:", error);
+  }
 }
 
 function finishBoot() {
@@ -189,6 +205,11 @@ function handleCommand(rawCommand) {
   }
 
   if (command === "repos") {
+    if (!repositories.length) {
+      printTerminal("Repository inventory is still loading or unavailable.", "pink");
+      return;
+    }
+
     repositories.forEach((repo) => printTerminal(`${escapeHtml(repo.name)} → ${escapeHtml(repo.url)}`, "cyan"));
     return;
   }
@@ -303,7 +324,7 @@ function bindEvents() {
   });
 }
 
-renderRepositories();
+loadRepositories();
 bindEvents();
 attachDragBehavior();
 runBoot();
