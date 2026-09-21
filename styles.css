@@ -966,14 +966,21 @@ input {
 }
 
 @media (max-width: 860px) {
+  html {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
   body {
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height: 100dvh;
   }
 
   .desktop {
     min-height: 100dvh;
-    overflow: auto;
-    padding: 58px 14px 48px;
+    overflow: visible;
+    padding: 58px 14px 104px;
   }
 
   .top-panel {
@@ -995,7 +1002,7 @@ input {
     bottom: 42px;
     flex-direction: row;
     justify-content: center;
-    z-index: 20;
+    z-index: 100;
   }
 
   .dock-item {
@@ -1037,6 +1044,8 @@ input {
   }
 
   .about-body {
+    height: auto;
+    overflow: visible;
     padding: 16px;
   }
 
