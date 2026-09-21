@@ -97,7 +97,7 @@ async function loadRepositories() {
       page += 1;
     }
 
-    repositories.push(...repos.map((repo) => ({
+    repositories.push(...repos.filter((repo) => !repo.fork).map((repo) => ({
       name: repo.name,
       url: repo.html_url,
       description: repo.description || "Public repository without a description."
