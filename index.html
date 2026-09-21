@@ -78,6 +78,7 @@
 
       <aside class="dock" aria-label="Desktop dock">
         <button type="button" class="dock-item active" data-window="fileExplorer" title="Repositories">▣<span>Repos</span></button>
+        <button type="button" class="dock-item" data-window="aboutWindow" title="About Me">◉<span>About</span></button>
         <button type="button" class="dock-item" data-window="terminalWindow" title="Terminal">▰<span>Shell</span></button>
         <a class="dock-item social-dock os-link" href="https://github.com/t4nnyyy" data-label="GitHub Profile" title="GitHub" target="_blank" rel="noopener noreferrer">
           <svg class="social-icon" aria-hidden="true"><use href="#logo-github"></use></svg><span>GitHub</span>
@@ -94,6 +95,10 @@
         <button class="desktop-icon" type="button" data-window="fileExplorer">
           <span class="icon-folder">▣</span>
           <span>Repositories</span>
+        </button>
+        <button class="desktop-icon" type="button" data-window="aboutWindow">
+          <span class="icon-profile">◉</span>
+          <span>About Me</span>
         </button>
         <button class="desktop-icon" type="button" data-window="terminalWindow">
           <span class="icon-terminal">▰</span>
@@ -121,8 +126,9 @@
         <div class="explorer-body">
           <aside class="explorer-sidebar">
             <p class="sidebar-label">Places</p>
-            <button class="side-link active" type="button">~/repositories</button>
-            <a class="side-link os-link" href="https://github.com/t4nnyyy" data-label="GitHub Profile" target="_blank" rel="noopener noreferrer">GitHub - T4NNYYY</a>
+            <button class="side-link" type="button" data-window="aboutWindow">◉ About Me</button>
+            <button class="side-link active" type="button">▣ ~/repositories</button>
+            <a class="side-link os-link" href="https://github.com/t4nnyyy" data-label="GitHub Profile" target="_blank" rel="noopener noreferrer">◈ GitHub - T4NNYYY</a>
             <a class="side-link os-link" href="https://www.linkedin.com/in/t4nnyyy/" data-label="LinkedIn Profile" target="_blank" rel="noopener noreferrer">LinkedIn - T4NNYYY</a>
             <a class="side-link os-link" href="https://www.youtube.com/@streamshield" data-label="StreamShield YouTube" target="_blank" rel="noopener noreferrer">Youtube - StreamShield</a>
           </aside>
@@ -133,6 +139,127 @@
             </div>
             <div class="repo-grid" id="repoGrid"></div>
           </div>
+        </div>
+      </section>
+
+      <section id="aboutWindow" class="window about-window hidden" aria-label="About Tanveer Ali">
+        <div class="window-titlebar drag-handle">
+          <span class="window-title">About Me — /home/t4nnyyy/profile</span>
+          <button class="window-close" type="button" data-close="aboutWindow" aria-label="Close About Me window">×</button>
+        </div>
+        <div class="about-body">
+          <section class="profile-hero">
+            <div class="profile-avatar" aria-hidden="true">TA</div>
+            <div class="profile-intro">
+              <p class="eyebrow">PROFILE // CYBERSECURITY</p>
+              <h2>Tanveer Ali</h2>
+              <p class="profile-role">Sr. Cyber Security Analyst — Team Lead</p>
+              <p class="profile-summary">
+                Cybersecurity professional with a hands-on journey across IT support, infrastructure, cloud,
+                endpoint security and SOC operations. I enjoy turning security telemetry into clear investigations,
+                practical detections and measurable improvements in defensive operations.
+              </p>
+              <div class="profile-actions">
+                <a class="profile-button primary os-link" href="https://www.linkedin.com/in/t4nnyyy/" data-label="LinkedIn Profile" target="_blank" rel="noopener noreferrer">View LinkedIn ↗</a>
+                <a class="profile-button os-link" href="https://github.com/t4nnyyy" data-label="GitHub Profile" target="_blank" rel="noopener noreferrer">Explore GitHub ↗</a>
+              </div>
+            </div>
+          </section>
+
+          <section class="about-section">
+            <div class="section-heading">
+              <span class="section-kicker">01</span>
+              <div>
+                <h3>What I do</h3>
+                <p>Security operations, investigation and engineering with an infrastructure-first mindset.</p>
+              </div>
+            </div>
+            <div class="focus-grid">
+              <article class="focus-card"><span>01</span><h4>SOC & Incident Response</h4><p>Security monitoring, alert triage, incident investigation, threat hunting and response workflows across endpoint, identity, cloud and network telemetry.</p></article>
+              <article class="focus-card"><span>02</span><h4>Endpoint & Email Security</h4><p>Hands-on experience with Microsoft Defender, CrowdStrike, Cisco AMP, phishing analysis, email security and malware-analysis workflows.</p></article>
+              <article class="focus-card"><span>03</span><h4>Cloud, Identity & Network</h4><p>Azure security, Conditional Access, identity controls, firewalls, Cisco FMC, network security and infrastructure troubleshooting.</p></article>
+              <article class="focus-card"><span>04</span><h4>Automation & Research</h4><p>PowerShell, KQL, scripting and security research used to improve investigations, visibility, repeatability and analyst efficiency.</p></article>
+            </div>
+          </section>
+
+          <section class="about-section">
+            <div class="section-heading">
+              <span class="section-kicker">02</span>
+              <div>
+                <h3>Experience</h3>
+                <p>A progression from technical support and infrastructure into security operations and team leadership.</p>
+              </div>
+            </div>
+            <div class="timeline">
+              <article class="timeline-item current">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-meta"><span>Oct 2025 — Present</span><span>Altera Digital Health</span></div>
+                  <h4>Sr. Cyber Security Analyst — Team Lead</h4>
+                  <p>Leading and supporting security operations with a focus on detection, investigation, incident response, security tooling and continuous improvement.</p>
+                  <div class="tag-row"><span>Microsoft Defender</span><span>CrowdStrike</span><span>SIEM</span><span>Threat Hunting</span></div>
+                </div>
+              </article>
+              <article class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-meta"><span>Oct 2024 — Oct 2025</span><span>Altera Digital Health</span></div>
+                  <h4>Cyber Security Analyst</h4>
+                  <p>Investigated endpoint, phishing, cloud, firewall and SIEM alerts; performed malware analysis, threat hunting, threat-intelligence research and incident response; collaborated with IT and documented security findings.</p>
+                  <div class="tag-row"><span>Microsoft Sentinel</span><span>Threat Grid</span><span>Cisco FMC</span><span>Azure</span><span>KQL</span></div>
+                </div>
+              </article>
+              <article class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-meta"><span>Dec 2021 — Oct 2024</span><span>Altera Digital Health</span></div>
+                  <h4>IT Support Analyst</h4>
+                  <p>Supported internal users and enterprise systems across Microsoft 365, Exchange, Active Directory, Citrix VDI, VMware vSphere and Morpheus Cloud, while contributing to onboarding, access management, documentation and troubleshooting.</p>
+                  <div class="tag-row"><span>Microsoft 365</span><span>Exchange</span><span>Citrix</span><span>VMware</span><span>AD</span></div>
+                </div>
+              </article>
+              <article class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-meta"><span>May 2021 — Dec 2021</span><span>Global Market Insights Inc.</span></div>
+                  <h4>Technical Support Engineer</h4>
+                  <p>Worked on firewall rules, O365 administration, mail flow, compliance and DLP, plus web-traffic and user-activity monitoring.</p>
+                  <div class="tag-row"><span>Firewall</span><span>O365</span><span>DLP</span><span>iView</span><span>ActivTrak</span></div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="about-section">
+            <div class="section-heading">
+              <span class="section-kicker">03</span>
+              <div>
+                <h3>Skills & toolkit</h3>
+                <p>Selected capabilities developed across security, infrastructure, automation and software.</p>
+              </div>
+            </div>
+            <div class="skills-cloud">
+              <span class="skill-group-title">Security Operations</span>
+              <span>Incident Response</span><span>Security Monitoring</span><span>SIEM</span><span>Threat Hunting</span><span>Malware Analysis</span><span>Vulnerability Management</span><span>Risk Management</span><span>MITRE ATT&amp;CK</span><span>Security Research</span><span>Cyber Defense</span><span>Information Security</span>
+              <span class="skill-group-title">Security Tools & Platforms</span>
+              <span>Microsoft Defender</span><span>CrowdStrike</span><span>Microsoft Sentinel</span><span>Rapid7</span><span>Cisco FMC</span><span>Cisco AMP</span><span>Cisco Umbrella</span><span>Mimecast</span><span>Threat Grid</span><span>osquery</span><span>Azure</span><span>Conditional Access</span>
+              <span class="skill-group-title">Infrastructure & Identity</span>
+              <span>Active Directory</span><span>Azure AD</span><span>ADFS</span><span>AD DS</span><span>Microsoft Exchange</span><span>Microsoft 365</span><span>Windows Server</span><span>VMware vCenter</span><span>Citrix Studio</span><span>Citrix Workspace</span><span>Linux</span><span>AWS</span>
+              <span class="skill-group-title">Automation & Development</span>
+              <span>PowerShell</span><span>KQL</span><span>Bash</span><span>Shell Scripting</span><span>VBScript</span><span>JavaScript</span><span>HTML</span><span>CSS</span><span>PHP</span><span>Java</span><span>C#</span><span>C++</span><span>SQL</span><span>ASP.NET</span><span>PL/SQL</span>
+              <span class="skill-group-title">Professional</span>
+              <span>Problem Solving</span><span>Troubleshooting</span><span>Communication</span><span>Technical Support</span><span>Systems Engineering</span><span>Customer Support</span>
+            </div>
+          </section>
+
+          <section class="about-section about-footer">
+            <div>
+              <p class="eyebrow">CURRENT FOCUS</p>
+              <h3>Building practical security, one investigation at a time.</h3>
+              <p>I like working at the intersection of security operations and engineering — investigating what happened, understanding why it happened, and improving the controls or automation that help prevent the next alert.</p>
+            </div>
+            <div class="profile-terminal-note"><span class="green">t4nnyyy@kali</span>:<span class="blue">~</span>$ <span class="cyan">cat /etc/motd</span><br>Stay curious. Hunt smarter. Build better.</div>
+          </section>
         </div>
       </section>
 

@@ -164,12 +164,18 @@ function handleCommand(rawCommand) {
   if (!command) return;
 
   if (command === "help") {
-    printTerminal("Available commands: help, whoami, repos, social, clear, open github, open linkedin, open youtube", "cyan");
+    printTerminal("Available commands: help, whoami, about, repos, social, clear, open github, open linkedin, open youtube", "cyan");
     return;
   }
 
   if (command === "whoami") {
     printTerminal("Tanveer Ali // @t4nnyyy // GitHub Pages Kali-style portfolio", "cyan");
+    return;
+  }
+
+  if (command === "about") {
+    openWindow("aboutWindow");
+    printTerminal("Opening About Me profile...", "green");
     return;
   }
 
