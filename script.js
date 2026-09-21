@@ -131,6 +131,15 @@ function updateClock() {
 function openWindow(id) {
   const win = document.getElementById(id);
   if (!win) return;
+
+  if (window.matchMedia("(max-width: 860px)").matches) {
+    document.querySelectorAll(".window:not(.hidden)").forEach((openWin) => {
+      if (openWin.id !== id) {
+        closeWindow(openWin.id);
+      }
+    });
+  }
+
   win.classList.remove("hidden");
   win.style.zIndex = String(++zIndexCounter);
   document.querySelectorAll(`[data-window="${id}"]`).forEach((button) => button.classList.add("active"));
