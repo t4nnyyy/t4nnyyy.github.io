@@ -293,6 +293,16 @@ function attachDragBehavior() {
 function bindEvents() {
   skipBoot.addEventListener("click", finishBoot);
 
+  repoGrid.addEventListener("click", (event) => {
+    if (!window.matchMedia("(max-width: 860px)").matches) return;
+    if (event.target.closest(".repo-link")) return;
+
+    const card = event.target.closest(".repo-card");
+    if (card) {
+      card.classList.toggle("is-expanded");
+    }
+  });
+
   document.querySelectorAll("a[href^='http']").forEach((link) => {
     link.setAttribute("target", "_blank");
     link.setAttribute("rel", "noopener noreferrer");
